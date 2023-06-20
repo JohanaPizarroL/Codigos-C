@@ -11,11 +11,11 @@ void ler_dimensoes(int* n){
 	scanf("%d", &(*n));
 }
 
-void alocar(double*** m,int n){
+void alocar(double*** m,int n){ //passagem por referência (* **m)
 	//alocando dois vetores, vet de ponteiros e vet e elementos
 	*m = (double**)calloc (n, sizeof(double*));
 
-//primeiro elemento de cada"linha
+//primeiro elemento de cada linha
 	(*m)[0] = (double*)malloc(n * n * sizeof(double));
 
 	for(int i = 1; i < n; i++){ //inicia de 1, pois o [0] já foi
@@ -29,14 +29,9 @@ void preencher(double** m,int n){
 
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < n; j++){
-
-			//geracao de numeros aleatórios com a funcao srand - alocando os numeros dentro de mem
-
 			m[i][j] = rand() % 10;//gerar numeros de 0 até 10
 		}
-
 	}
-
 }
 
 
@@ -65,9 +60,9 @@ int main(){
 	int n;
 	double **m;
 
-	ler_dimensoes(&n); //passando n por referencia
-
-	alocar(&m, n);
+	ler_dimensoes(&n); //passagem por referência
+	
+	alocar(&m, n); //passando m por referência -> ***m (referência e ponteiro duplo)
 	preencher(m, n);
 	imprime(m, n);
 	desalocar(&m, n);
